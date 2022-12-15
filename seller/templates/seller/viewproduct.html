@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <p>products view</p>
+    <div>
+        {% for product in cake_products %}
+            <p>{{product.name}}</p>
+            <div><img src="media/{{product.image}}" alt="" sizes="150" srcset=""></div>
+            <a href="editproduct/{{product.id}}">edit</a>
+        {%endfor%}
+        
+    </div>
+    
+</body>
+</html>
