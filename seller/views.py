@@ -1,4 +1,5 @@
 from unicodedata import category
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
 from .forms import add_cake_product_form,CakeCategory
 from django.contrib import messages
@@ -6,18 +7,24 @@ from .models import CakeProducts
 
 # Create your views here.
 
+@login_required(login_url='auth:seller_signin')
+def seller_home(request):
+    return render(request,'seller/index.html')
+
+
+@login_required(login_url='auth:seller_signin')
 def add_category(request):
     formdata = CakeCategory()
     if request.method == 'POST':
         formdata = CakeCategory(request.POST)
         if formdata.is_valid():
             formdata.save()
-            return redirect('add_cake_product')
+            return redirect('seller:add_cake_product')
 
     return render(request,'seller/category.html',{'CakeCategory':CakeCategory})
 
 
-
+@login_required(login_url='auth:seller_signin')
 def add_cake_product(request):
     form = add_cake_product_form()
     context = {'add_cake_product_form':form}
@@ -28,12 +35,13 @@ def add_cake_product(request):
             messages.info(request,'Product added successfully')
     return render(request,'seller/addproduct.html',context)
 
-
+@login_required(login_url='auth:seller_signin')
 def list_cake_product(request):
     cake_products = CakeProducts.objects.all()
     context = {'cake_products':cake_products}
     return render(request,'seller/viewproduct.html',context)
 
+@login_required(login_url='auth:seller_signin')
 def edit_cake_product(request,pk):
     cake_product = CakeProducts.objects.get(id = pk)
     form = add_cake_product_form(instance=cake_product)   

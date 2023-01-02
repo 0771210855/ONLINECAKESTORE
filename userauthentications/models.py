@@ -16,15 +16,11 @@ class Seller(models.Model):
         (COMPANY, 'company'),
     ]
         # authetication details and privacy policy agreament
-    # user = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True)
-    
+    user = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True)    
     register_as = models.CharField(max_length=7,choices=register_as_choice,default=COMPANY)
     brand_name = models.CharField(max_length=20,db_index=True)
-    password    =   models.CharField(max_length=20)
-
     
     # contact details
-    email = models.EmailField()
     phone = models.CharField(max_length=12)
 
     # locations
@@ -33,15 +29,15 @@ class Seller(models.Model):
     division = models.CharField(max_length=20,db_index=True) #county / division
     parish = models.CharField(max_length=20,db_index=True) #parish / subcounty
     village = models.CharField(max_length=20,db_index=True) #village / cell
+    created = models.DateTimeField(auto_now_add=True)
+    updated = models.DateTimeField(auto_now=True)
 
 class Customer(models.Model):
-    # user = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True)
-    fullname = models.CharField(max_length=30,null=True)
-    username = models.CharField(max_length=20,db_index=True,unique=True, null=True)
+    user = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True)
     location = models.CharField(max_length=20,db_index=True)
     phone = models.CharField(max_length=20,db_index=True)
-    email = models.EmailField()
-    password    =   models.CharField(max_length=20,null=True)
+    created = models.DateTimeField(auto_now_add=True)
+    updated = models.DateTimeField(auto_now=True)
 
 
 class Admin(models.Model):
