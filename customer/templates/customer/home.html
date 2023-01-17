@@ -44,14 +44,19 @@
             </li>
             
             <li class="nav-item">
-              <a class="nav-link " href="{% url 'customer:home' %}">customer</a>
+              <a class="nav-link " href="{% url 'auth:customer_logout' %}">logout</a>
             </li>
-          </ul>
-          <form class="form-inline my-2 my-lg-0">
-            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-          </form>
+          </ul>          
         </div>
       </nav>
+
+      <div class="">
+        <br>
+        <br>
+        <br>
+        <br>
+        <p> the name is: {{product.name}}</p>
+        <p>the id is: {{product.id}}</p>
+      </div>
 </body>
 </html>

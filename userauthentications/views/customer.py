@@ -15,7 +15,7 @@ from ..forms import customer_registration_form
 class customerSignup(CreateView):
     model = User
     form_class = customer_registration_form
-    template_name = "userauthentications/signup.html"
+    template_name = "customer/signup.html"
     success_url = reverse_lazy("customer:home")
 
     def form_valid(self, form):
@@ -43,6 +43,9 @@ def customerSignin(request):
             user = authenticate(username=username, password= password)
             if user is not None:
                 login(request, user)
+                if request.user.is_customer is False:
+                    logout(request)
+                    return redirect('auth:customer_signin')
                 messages.info(request, f"You are now logged in as {username}.")
                 return redirect ('customer:home')
             else:
@@ -55,4 +58,4 @@ def customerSignin(request):
 
 def logout_request(request):
     logout(request)
-    return redirect("seller:signin")
+    return redirect("customer:home")

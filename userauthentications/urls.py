@@ -9,11 +9,11 @@ urlpatterns=[
 
     path('seller-signin/',seller.sellerSignin,name='seller_signin'),
 
-    path('logout',seller.logout_request,name="logout"),
+    path('logout-seller/',seller.logout_request,name="seller_logout"),
 
     path('customer-signup/',customer.customerSignup.as_view(),name='customer_signup'),
     
     path('customer-signin/',customer.customerSignin,name='customer_signin'),
 
-    path('logout',customer.logout_request,name="logout"),
+    path('logout-customer/',customer.logout_request,name="customer_logout"),
 ]

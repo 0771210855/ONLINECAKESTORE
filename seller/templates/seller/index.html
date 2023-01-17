@@ -12,10 +12,15 @@
     </style>
 </head>
 <body>
+
+    <div>
+        <p>Your logged in as: {{user}} </p>
+
+    </div>
     <div>
         <span>
             <a href="{%url 'seller:add_cake_product'%}">add product</a>
-            <a href="{%url 'auth:logout'%}">logout</a>
+            <a href="{%url 'auth:seller_logout'%}">logout</a>
             <a href="{%url 'seller:view_products'%}">my poduct list</a>
             <a href=""></a>
         </span>
