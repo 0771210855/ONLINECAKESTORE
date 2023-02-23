@@ -30,6 +30,7 @@ class CakeProducts(models.Model):
     product_owner = models.ForeignKey(User,related_name="product_Owner",on_delete=models.CASCADE,null= True, default='1' )
     image = models.ImageField(upload_to='products/%y/%m/',blank=True)
     description =models.TextField(blank=True)
+    price_true = models.DecimalField(max_digits=10,decimal_places=2)
     price = models.DecimalField(max_digits=10,decimal_places=2)
     available = models.BooleanField(default=True)
     discountoffers = models.BooleanField(default=False,verbose_name = "any discounts")

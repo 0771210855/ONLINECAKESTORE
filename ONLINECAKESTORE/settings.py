@@ -28,6 +28,8 @@ DEBUG = True
 ALLOWED_HOSTS = []
 
 
+
+
 # Application definition
 
 INSTALLED_APPS = [
@@ -50,7 +52,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'userauthentications.middleware.Routing_middleware',
+    'ONLINECAKESTORE.middleware.Routing.Routing_middleware',
+    'ONLINECAKESTORE.middleware.sessiontimeout.Session_timeout_middleware',
 ]
 
 ROOT_URLCONF = 'ONLINECAKESTORE.urls'
@@ -135,3 +138,11 @@ AUTH_USER_MODEL = 'userauthentications.User'
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+# Logout after a period of inactivity
+INACTIVE_TIME = 1*60  # 15 minutes - or whatever period you think appropriate
+SESSION_SERIALIZER = 'django.contrib.sessions.serializers.PickleSerializer'
+SESSION_EXPIRE_AT_BROWSER_CLOSE= True
+SESSION_COOKIE_AGE = INACTIVE_TIME   # change expired session
+SESSION_IDLE_TIMEOUT = INACTIVE_TIME

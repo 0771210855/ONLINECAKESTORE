@@ -6,6 +6,12 @@ class Routing_middleware:
         self.get_response = get_response
 
     def __call__(self, request):
+
+        from django.urls import resolve
+
+#     current_namespace = resolve(request.path_info).namespace
+#     # do something with current_namespace
+
         
 
         if request.user.is_authenticated:
